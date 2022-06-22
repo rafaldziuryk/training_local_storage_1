@@ -15,11 +15,11 @@ class PageTwoState extends State<PageTwo> {
   Database? database;
 
   Future<void> _doubleIncrementCounter() async {
-    final counter = _counter + 2;
+    var counter = _counter;
     await database?.transaction((txn) {
       final batch = txn.batch();
-      batch.rawUpdate('UPDATE Counter SET value = ?', [counter]);
-      batch.rawUpdate('UPDATE Counter SET value = ?', [counter + 1]);
+      batch.rawUpdate('UPDATE Counter SET value = ?', [++counter]);
+      batch.rawUpdate('UPDATE Counter SET value = ?', [++counter]);
       return batch.commit();
     });
     setState(() {

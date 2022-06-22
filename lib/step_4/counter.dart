@@ -1,7 +1,7 @@
-class Counter {
+class CounterHive {
   final int value;
 
-  const Counter({
+  const CounterHive({
     required this.value,
   });
 }

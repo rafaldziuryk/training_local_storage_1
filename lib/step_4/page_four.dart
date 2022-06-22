@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:sqflite/sqflite.dart';
-
+import 'counter.dart';
 import 'counter_adapter.dart';
 
 class PageFour extends StatefulWidget {
@@ -14,13 +13,13 @@ class PageFour extends StatefulWidget {
 }
 
 class PageFourState extends State<PageFour> {
-  int _counter = 0;
+  CounterHive _counter = CounterHive(value: 0);
 
   late final Box box;
 
   Future<void> _incrementCounter() async {
-    final counter = _counter + 1;
-    box.put('counter2', counter);
+    final counter = CounterHive(value: _counter.value + 1);
+    box.put('counter4', counter);
     setState(() {
       _counter = counter;
     });
@@ -36,7 +35,7 @@ class PageFourState extends State<PageFour> {
       box = await Hive.openBox('Counter2');
       SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
         setState(() {
-          _counter = box.get('counter2', defaultValue: 0);
+          _counter = box.get('counter4', defaultValue: CounterHive(value: 0));
         });
       });
     });
@@ -48,7 +47,7 @@ class PageFourState extends State<PageFour> {
       appBar: AppBar(
         title: const Text('Page Four Demo'),
       ),
-      body: Center(child: Text('Tapped $_counter times')),
+      body: Center(child: Text('Tapped ${_counter.value} times')),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',

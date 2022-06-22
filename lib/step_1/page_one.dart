@@ -17,8 +17,6 @@ class PageOneState extends State<PageOne> {
     final SharedPreferences prefs = await _prefs;
     final int counter = (prefs.getInt('counter') ?? 0) + 1;
 
-    await prefs.setInt('counter', counter);
-
     setState(() {
       _counter = counter;
     });
