@@ -5,6 +5,7 @@ import 'package:local_storage_1/step_2/page_two.dart';
 import 'package:local_storage_1/step_3/page_three.dart';
 import 'package:local_storage_1/step_4/page_four.dart';
 import 'package:local_storage_1/step_5/page_five.dart';
+import 'package:local_storage_1/step_6/page_six.dart';
 
 void main() {
   runApp(const MyApp());
@@ -71,6 +72,12 @@ class MyHomePage extends StatelessWidget {
                 builder: (context) => const PageFive(),
               )),
               child: const Text('Step 5'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const PageSix(),
+              )),
+              child: const Text('Step 6'),
             ),
           ],
         ),
