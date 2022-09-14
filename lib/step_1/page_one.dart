@@ -16,7 +16,7 @@ class PageOneState extends State<PageOne> {
   Future<void> _incrementCounter() async {
     final SharedPreferences prefs = await _prefs;
     final int counter = (prefs.getInt('counter') ?? 0) + 1;
-
+    prefs.setInt('counter', counter);
     setState(() {
       _counter = counter;
     });
